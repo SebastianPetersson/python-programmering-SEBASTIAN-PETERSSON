@@ -78,9 +78,11 @@ print(f"Längden är ungefär {distance:.1f} l.u.\n")
 
 print("Uppgift 5)\n")
 
-p1(2, 1, 4)
-p2(3, 1, 0)
+p1 = (2, 1, 4)
+p2 = (3, 1, 0)
 
 distance = math.sqrt((p1[0]-p2[0])**2 + (p1[1]-p2[1])**2 + (p1[2]-p2[2])**2)
 
-print(distance)
+print(f"Längden mellan de två punkterna är ca {distance:.2f} l.u.")
+
+
