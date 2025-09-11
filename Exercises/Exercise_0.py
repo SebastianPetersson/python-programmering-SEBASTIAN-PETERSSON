@@ -76,7 +76,7 @@ print(f"Längden är ungefär {distance:.1f} l.u.\n")
 
 #_______________________________________________________________________
 
-print("Uppgift 5)\n")
+print("Uppgift 6)\n")
 
 p1 = (2, 1, 4)
 p2 = (3, 1, 0)
