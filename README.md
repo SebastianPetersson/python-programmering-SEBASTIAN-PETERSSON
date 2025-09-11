@@ -1,3 +1,4 @@
 # python-programmering-SEBASTIAN-PETERSSON
 
-Detta är vad som antagligen kommer bli platsen där mina skol-projekt laddas upp.
+Varmt välkommen till mitt Repo som kommer användas under python-kursen. Den här texten kommer säkerligen uppdateras!
+
