@@ -105,3 +105,6 @@ if we <= 8:
           print("Din väska är okej i vikt men håller sig inte inom måtten.")
 else:
         print("Din väska är för tung.")
+
+
+print("Klar")
