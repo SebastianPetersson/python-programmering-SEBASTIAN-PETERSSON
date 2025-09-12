@@ -106,5 +106,3 @@ if we <= 8:
 else:
         print("Din väska är för tung.")
 
-
-print("Klar")
