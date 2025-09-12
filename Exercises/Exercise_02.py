@@ -42,14 +42,14 @@
 
 #___________________________________________________________________________________
 
-print("\n" + "_"*100)
-print("\nUppgift 3 - Guess number game (*)\n" + "\na)\n")
+# print("\n" + "_"*100)
+# print("\nUppgift 3 - Guess number game (*)\n" + "\na)\n")
 
 # import random as rnd
 
 # siffra = rnd.randint(1, 100)
 # gissning = int(input("Gissa en siffra mellan 1-100: "))
-# antal_gissning = 0
+# antal_gissning = 1
 
 # while gissning != siffra:
 #     antal_gissning += 1
@@ -72,9 +72,23 @@ print("\nb)\n")
 
 import random as rnd
 
+siffra = rnd.randint(1, 1000)
+lägsta = 1
+högsta = 1000
+antal_gissningar = 0
 
+while True:
+    gissning = (lägsta+högsta)//2
+    antal_gissningar += 1
+    print(f"Jag gissar att siffran är {gissning}.")
 
-
-
-
+    if gissning < siffra:
+        print("För lågt, försök igen.")
+        lägsta = gissning + 1
+    elif gissning > siffra:
+        print("För högt, försök igen.")
+        högsta = gissning - 1
+    else:
+        print(f"Nice, jag gissade rätt. Siffran var {siffra} och det tog mig {antal_gissningar} försök.")
+        break
 
