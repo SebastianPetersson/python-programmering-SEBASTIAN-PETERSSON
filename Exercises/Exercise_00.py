@@ -9,7 +9,7 @@ b = 4
 
 c = math.sqrt(a**2 + b**2)
 
-print(f"Med kateterna {a} cm och {b} cm blir hypotenusan {c:.1f} cm.\n")
+print(f"Med kateterna {a} cm och {b} cm blir hypotenusan {c:.0f} cm.\n")
 
 #_______________________________________________________________________
 
@@ -20,7 +20,7 @@ c = 7.0
 
 b = math.sqrt(c**2 - a**2)
 
-print(f"Längden av katetern b är {b:.1f} cm.\n")
+print(f"Längden av katetern b är {b:.1f} l.u.\n")
 
 #_______________________________________________________________________
 
@@ -46,6 +46,10 @@ tn = 985
 accuracy = (tp+tn)/(tp+tn+fn+fp)
 
 print(f"Träffsäkerheten av ml-modellen är {accuracy*100}%.\n")
+
+# Modellen har en hög noggrannhet på 98,7% men med tanke på att utav 13 totala verkliga bränder endast lyckas förutse 2 så är den ju helt katastrofal.
+# Hade modellen använts i ett riktigt scenario hade det lett till livsfarliga situationer där liv hade kunnat gå förlorade och e.x. försenade utryckningar.
+# Modellen behöver förbättras så att antalet falska negativa minskar avsevärt och att sanna positiver därav ökarS. Detta kan möjigt leda till ett ökat antal falska positiva, men det är bättre det!
 
 #_______________________________________________________________________
 
