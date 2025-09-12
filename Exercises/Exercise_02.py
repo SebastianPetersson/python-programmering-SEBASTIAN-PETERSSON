@@ -1,4 +1,4 @@
-# #While_statements_exercise_02
+# # #While_statements_exercise_02
 
 # print("Uppgift 1 - Count numbers(*)\n")
 
@@ -40,7 +40,7 @@
 # print(summa)
 
 
-#___________________________________________________________________________________
+# #___________________________________________________________________________________
 
 # print("\n" + "_"*100)
 # print("\nUppgift 3 - Guess number game (*)\n" + "\na)\n")
@@ -65,30 +65,72 @@
 # else:
 #     print(f"Du gissade rätt! Siffran var {siffra} och du klarade det på {antal_gissning} försök.")
 
-#___________________________________________________________________________________
+# #___________________________________________________________________________________
+
+# print("\n" + "_"*100)
+# print("\nb)\n")
+
+# import random as rnd
+
+# siffra = rnd.randint(1, 1000)
+# lägsta = 1
+# högsta = 1000
+# antal_gissningar = 0
+
+# while True:
+#     gissning = (lägsta+högsta)//2
+#     antal_gissningar += 1
+#     print(f"Jag gissar att siffran är {gissning}.")
+
+#     if gissning < siffra:
+#         print("För lågt, försök igen.")
+#         lägsta = gissning + 1
+#     elif gissning > siffra:
+#         print("För högt, försök igen.")
+#         högsta = gissning - 1
+#     else:
+#         print(f"Nice, jag gissade rätt. Siffran var {siffra} och det tog mig {antal_gissningar} försök.")
+#         break
+
+# #___________________________________________________________________________________
+
+# print("\n" + "_"*100)
+# print("\nUppgift 5 - Check convergence(**)\n" + "\na)\n")
+
+# import math
+
+# summa = 0
+# term = 1
+# noggrannhet = float(input("Hur många gånger ska siffran delas och halveras?: "))
+# epsilon = 10 ** (-noggrannhet) #epsilon används för att beräkna när en oändlig serie siffror konvergerar, i detta fallet mot 2.
+
+# while term > epsilon:
+#     summa += term
+#     term /= 2
+
+# print(f"Summan närmar sig {summa}.")
+
+# #Intressant här är att det är stor skillnad på när jag skriver in 15 eller 16 som noggrannhet. 
+# #15 ger mig 1.9999999999999982, medans 16 ger mig 2.0. Varför? Verkar vara på grund av datorers sätt att hantera float-tal. 
+
+import math 
 
 print("\n" + "_"*100)
 print("\nb)\n")
 
-import random as rnd
+summa = 0
+n = 0
 
-siffra = rnd.randint(1, 1000)
-lägsta = 1
-högsta = 1000
-antal_gissningar = 0
+noggrannhet = int(input("Hur många decimalers noggrannhet vill du ha?: "))
+epsilon = 10 ** (-noggrannhet)
 
-while True:
-    gissning = (lägsta+högsta)//2
-    antal_gissningar += 1
-    print(f"Jag gissar att siffran är {gissning}.")
+term = 1
 
-    if gissning < siffra:
-        print("För lågt, försök igen.")
-        lägsta = gissning + 1
-    elif gissning > siffra:
-        print("För högt, försök igen.")
-        högsta = gissning - 1
-    else:
-        print(f"Nice, jag gissade rätt. Siffran var {siffra} och det tog mig {antal_gissningar} försök.")
-        break
+while abs(term) > epsilon:
+    term = ((-1) ** n) / (2*n + 1)
+    summa += term
+    n += 1
+
+print(f"Summan närmar sig {summa}, vilket är ungefär π/4.")
+#Fråga kring den här uppgiften. Förstår inte riktigt om jag har gjort rätt, men tror det?
 
