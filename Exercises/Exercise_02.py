@@ -10,4 +10,42 @@ while i <= 10:
 
 #_____________________________________________________________________________
 
-print("\nUppgift 2 - Arithmetic sum (*)\n")
+print("\n" + "_"*100)
+print("\nUppgift 2 - Arithmetic sum (*)\n" + "\na)\n")
+
+summa = 0
+n = 1
+
+while n <= 100:
+    summa += n
+    if n < 100:
+        print(f"{n} ", end = "+ ")
+    else:
+        print(f"{n} ", end = "= ")
+    n += 1
+print(summa)
+
+print("\nb)\n")
+
+summa = 0
+n = 1
+
+while n <= 100:
+    summa += n
+    if n < 99:
+        print(f"{n} ", end = "+ ")
+    else:
+        print(f"{n} ", end = "= ")
+    n += 2
+print(summa)
+
+
+#___________________________________________________________________________________
+
+print("\n" + "_"*100)
+print("\nUppgift 3 - Guess number game (*)\n" + "\na)\n")
+
+
+
+
+
