@@ -67,30 +67,30 @@
 
 # #___________________________________________________________________________________
 
-# print("\n" + "_"*100)
-# print("\nb)\n")
+print("\n" + "_"*100)
+print("\nb)\n")
 
-# import random as rnd
+import random as rnd
 
-# siffra = rnd.randint(1, 1000)
-# lägsta = 1
-# högsta = 1000
-# antal_gissningar = 0
+siffra = rnd.randint(1, 10000)
+lägsta = 1
+högsta = 10000
+antal_gissningar = 0
 
-# while True:
-#     gissning = (lägsta+högsta)//2
-#     antal_gissningar += 1
-#     print(f"Jag gissar att siffran är {gissning}.")
+while True:
+    gissning = (lägsta+högsta)//2
+    antal_gissningar += 1
+    print(f"Jag gissar att siffran är {gissning}.")
 
-#     if gissning < siffra:
-#         print("För lågt, försök igen.")
-#         lägsta = gissning + 1
-#     elif gissning > siffra:
-#         print("För högt, försök igen.")
-#         högsta = gissning - 1
-#     else:
-#         print(f"Nice, jag gissade rätt. Siffran var {siffra} och det tog mig {antal_gissningar} försök.")
-#         break
+    if gissning < siffra:
+        print("För lågt, försök igen.")
+        lägsta = gissning + 1
+    elif gissning > siffra:
+        print("För högt, försök igen.")
+        högsta = gissning - 1
+    else:
+        print(f"Nice, jag gissade rätt. Siffran var {siffra} och det tog mig {antal_gissningar} försök.")
+        break
 
 # #___________________________________________________________________________________
 
@@ -113,24 +113,24 @@
 # #Intressant här är att det är stor skillnad på när jag skriver in 15 eller 16 som noggrannhet. 
 # #15 ger mig 1.9999999999999982, medans 16 ger mig 2.0. Varför? Verkar vara på grund av datorers sätt att hantera float-tal. 
 
-import math 
+# import math 
 
-print("\n" + "_"*100)
-print("\nb)\n")
+# print("\n" + "_"*100)
+# print("\nb)\n")
 
-summa = 0
-n = 0
+# summa = 0
+# n = 0
 
-noggrannhet = int(input("Hur många decimalers noggrannhet vill du ha?: "))
-epsilon = 10 ** (-noggrannhet)
+# noggrannhet = int(input("Hur många decimalers noggrannhet vill du ha?: "))
+# epsilon = 10 ** (-noggrannhet)
 
-term = 1
+# term = 1
 
-while abs(term) > epsilon:
-    term = ((-1) ** n) / (2*n + 1)
-    summa += term
-    n += 1
+# while abs(term) > epsilon:
+#     term = ((-1) ** n) / (2*n + 1)
+#     summa += term
+#     n += 1
 
-print(f"Summan närmar sig {summa}, vilket är ungefär π/4.")
-#Fråga kring den här uppgiften. Förstår inte riktigt om jag har gjort rätt, men tror det?
+# print(f"Summan närmar sig {summa}, vilket är ungefär π/4.")
+# #Fråga kring den här uppgiften. Förstår inte riktigt om jag har gjort rätt, men tror det?
 
