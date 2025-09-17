@@ -1,0 +1,1 @@
+# Nu kör vi igång med Labb 2!
