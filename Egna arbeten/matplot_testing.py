@@ -15,6 +15,9 @@
 
 # plt.show()
 
+import numpy as np
+import matplotlib.pyplot as plt
+
 
 A_list = [2,3,4,5]
 B_list = ["a", 'b', 'c', 'd']
@@ -25,3 +28,20 @@ tuple_list = list(zip(A_list, B_list, C_list))
 print(tuple_list)
 
 print(list(zip(*tuple_list)))
+
+
+# def medelvärde(*args):
+#     summa = 0
+#     värden = [1,4,5,8,7,9,6,3,2]
+#     for arg in args:
+
+
+def draw_circle(radius = 1, center = (0,0)):
+    x = np.linspace(0, 2*np.pi)
+    plt.plot(radius*np.sin(x)+center[0], radius*np.cos(x)+center[1])
+
+
+
+
+
+
