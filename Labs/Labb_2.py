@@ -3,3 +3,4 @@
 with open(r"C:\Users\Sebastian!\Documents\Programmering\python-programmering-SEBASTIAN-PETERSSON\Labs\datapoints.txt", "r") as f:
     text = f.read()
 
+print("test")
