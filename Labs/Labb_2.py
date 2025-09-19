@@ -19,8 +19,29 @@ with open(r"C:\Users\Sebastian!\Documents\Programmering\python-programmering-SEB
         row = [float(value.split(". ", 1)[-1].strip().strip("()")) for value in line.split(",")]
         test_data.append(row)
 
+#Packing pichu and pikachu data-rows in separate lists as (x, y).
+pichu_data_points = [(w,h) for (w,h,n) in training_data if n == 0]
+pikachu_data_points = [(w,h) for (w,h,n) in training_data if n == 1]
+pichu_x, pichu_y = zip(*pichu_data_points)
+pikachu_x, pikachu_y = zip(*pikachu_data_points)
 
-print(training_data)
-print(test_data)
 
 
+
+
+
+
+
+
+
+#Visa alla punkter i matplotlib
+plt.scatter(pichu_x, pichu_y, color = "red", edgecolor = "black", alpha = 0.5, label = "Pichu(0)")
+plt.scatter(pikachu_x, pikachu_y, color = "yellow", edgecolor = "black", alpha = 0.5, label = "Pikachu(1)")
+
+#Visuals
+plt.title("Labb 2 - Pichu eller Pikachu")
+plt.xlabel("Width(cm)")
+plt.ylabel("Height(cm)")
+plt.grid()
+plt.legend()
+plt.show()
