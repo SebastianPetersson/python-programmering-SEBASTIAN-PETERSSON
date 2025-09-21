@@ -30,13 +30,12 @@ test_x, test_y = zip(*test_data_points)
 
 
 
-#Visa alla punkter i matplotlib
+#Visuals
 plt.scatter(pichu_x, pichu_y, color = "red", edgecolor = "black", alpha = 0.5, label = "Pichu(0)")
 plt.scatter(pikachu_x, pikachu_y, color = "yellow", edgecolor = "black", alpha = 0.5, label = "Pikachu(1)")
-
 plt.scatter(test_x, test_y, color = "blue", edgecolor = "black", alpha = 0.5, label = "Testpoints")
 
-#Visuals
+
 plt.title("Labb 2 - Pichu eller Pikachu")
 plt.xlabel("Width(cm)")
 plt.ylabel("Height(cm)")
