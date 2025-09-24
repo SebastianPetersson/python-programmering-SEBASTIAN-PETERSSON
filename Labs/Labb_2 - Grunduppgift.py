@@ -1,12 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-
 datapoints_path = r"C:\Users\Sebastian!\Documents\Programmering\python-programmering-SEBASTIAN-PETERSSON\Labs\datapoints.txt"
 testpoints_path = r"C:\Users\Sebastian!\Documents\Programmering\python-programmering-SEBASTIAN-PETERSSON\Labs\testpoints.txt"
-
-
-
 
 #Cleaning and packing datapoints.txt into new list training_data.
 training_data = []
@@ -24,12 +20,9 @@ with open(testpoints_path, "r") as te_file:
         row = [float(value.split(". ", 1)[-1].strip().strip("()")) for value in line.split(",")]
         test_data.append(row)
 
-pichu= [(w,h) for (w,h,label) in training_data if label == 0]
-pikachu= [(w,h) for (w,h,label) in training_data if label == 1]
-pichu_x, pichu_y = zip(*pichu)
-pikachu_x, pikachu_y = zip(*pikachu)
+pichu = [(w,h) for (w,h,label) in training_data if label == 0]
+pikachu = [(w,h) for (w,h,label) in training_data if label == 1]
 test_data_points = [(w,h) for (w,h) in test_data]
-test_x, test_y = zip(*test_data_points)
 
 def euclidean_distance(p1, p2):
     dx = p1[0] - p2[0]
@@ -57,18 +50,19 @@ for point in test_data_points:
 
 for i, prediction in enumerate(predictions, start = 1):
     if prediction == 0:
-        print(f"Testdata {i} är Pichu.")
+        print(f"Testdata {i} är närmast en Pichu.")
     else:
-        print(f"Testdata {i} är Pikachu.")
+        print(f"Testdata {i} är närmast en Pikachu.")
 
+#Unzipping coordinates for Plotting.
+pichu_x, pichu_y = zip(*pichu)
+pikachu_x, pikachu_y = zip(*pikachu)
+test_x, test_y = zip(*test_data_points)
 
-#plotting
-colors = ["crimson" if p == 0 else "yellow" for p in predictions]
+colors = ["crimson" if pred == 0 else "yellow" for pred in predictions]
 plt.scatter(pichu_x, pichu_y, color = "crimson", edgecolor = "black", alpha = 0.7, label = "Pichu(0)")
 plt.scatter(pikachu_x, pikachu_y, color = "yellow", edgecolor = "black", alpha = 0.7, label = "Pikachu(1)")
 plt.scatter(test_x, test_y, color = colors, edgecolor = "black", alpha = 0.6, s = 50, label = "Testpoints", marker = "D")
-
-
 plt.title("Labb 2 - Pichu eller Pikachu")
 plt.xlabel("Width(cm)")
 plt.ylabel("Height(cm)")
