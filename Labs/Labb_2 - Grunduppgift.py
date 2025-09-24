@@ -1,32 +1,33 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import random as rnd
+
 
 datapoints_path = r"C:\Users\Sebastian!\Documents\Programmering\python-programmering-SEBASTIAN-PETERSSON\Labs\datapoints.txt"
 testpoints_path = r"C:\Users\Sebastian!\Documents\Programmering\python-programmering-SEBASTIAN-PETERSSON\Labs\testpoints.txt"
 
-training_data = []
-test_data = []
+
+
 
 #Cleaning and packing datapoints.txt into new list training_data.
+training_data = []
 with open(datapoints_path, "r") as tr_file:
     next(tr_file)
     for line in tr_file:
         row = [float(value) for value in line.split(",")]
         training_data.append(row)
 
-pichu= [(w,h) for (w,h,label) in training_data if label == 0]
-pikachu= [(w,h) for (w,h,label) in training_data if label == 1]
-pichu_x, pichu_y = zip(*pichu)
-pikachu_x, pikachu_y = zip(*pikachu)
-
 #Cleaning of test data, and packing them into the list test_data.
+test_data = []
 with open(testpoints_path, "r") as te_file:
     next(te_file)
     for line in te_file:
         row = [float(value.split(". ", 1)[-1].strip().strip("()")) for value in line.split(",")]
         test_data.append(row)
 
+pichu= [(w,h) for (w,h,label) in training_data if label == 0]
+pikachu= [(w,h) for (w,h,label) in training_data if label == 1]
+pichu_x, pichu_y = zip(*pichu)
+pikachu_x, pikachu_y = zip(*pikachu)
 test_data_points = [(w,h) for (w,h) in test_data]
 test_x, test_y = zip(*test_data_points)
 
@@ -45,7 +46,7 @@ def classify_test(test_point, training_data):
         distance = euclidean_distance(test_point, train_coordinates)
         distances.append((distance, label))
 
-    nearest_distance, nearest_label = min(distances, key=lambda x: x[0]) #Närmaste punkt
+    _, nearest_label = min(distances, key=lambda x: x[0]) #Närmaste punkt (_ är en s.k. slaskvariabel, innehåler det faktiska avståndet men det använder jag inte, vill endast ha label.)
     return nearest_label
 
 predictions = []
