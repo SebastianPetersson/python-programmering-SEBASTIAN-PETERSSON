@@ -1,0 +1,79 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import random as rnd
+datapoints_path = r"C:\Users\Sebastian!\Documents\Programmering\python-programmering-SEBASTIAN-PETERSSON\Labs\datapoints.txt"
+k = 10
+n_simulations = 10
+
+#Cleaning and packing datapoints.txt into training_data.
+clean_data = []
+with open(datapoints_path, "r") as tr_file:
+    next(tr_file)
+    for line in tr_file:
+        row = [float(value) for value in line.split(",")]
+        clean_data.append(row)
+
+#Separating pichu and pikachu
+pichu = [(w,h,label) for (w,h,label) in clean_data if label == 0]
+pikachu = [(w,h,label) for (w,h,label) in clean_data if label == 1]
+
+def euclidean_distance(p1, p2):
+    dx = p1[0] - p2[0]
+    dy = p1[1] - p2[1]
+    return np.sqrt(dx**2 + dy**2)
+
+actual_label = []
+predicted_label = []
+
+def classify_pokemon(test_set, training_set, k=10):
+
+    actual_label.clear()
+    predicted_label.clear()
+
+    for test_data in test_set:
+        distances = []
+        test_coordinates = test_data [:2]
+        test_label = test_data[2]
+        actual_label.append(test_label)
+
+        for training_data in training_set:
+            train_coordinates = training_data[:2]
+            label = training_data[2]
+            distance = euclidean_distance(test_coordinates, train_coordinates)
+            distances.append((distance, label))
+
+        distances.sort(key = lambda x: x[0])                          #Fick lambda-funktionen från chatGPT.
+        k_nearest = distances[:k]
+        labels = [label for distance, label in k_nearest]
+        prediction = max(set(labels), key=labels.count)             #Fick max(set()) från chatGPT.
+        predicted_label.append(prediction)
+    return predicted_label
+
+#Accuracy
+accuracy = []
+
+for i in range(n_simulations):
+
+    #Each simulation, shuffling, making new sets, and shuffling sets.
+    rnd.shuffle(pichu)
+    rnd.shuffle(pikachu)
+    training_set = pichu [:50] + pikachu [:50]
+    test_set = pichu [50:] + pikachu [50:]
+    rnd.shuffle(training_set)
+    rnd.shuffle(test_set)
+
+    predictions = classify_pokemon(test_set, training_set, k)
+
+    TP = sum(1 for a, p in zip(actual_label, predicted_label) if a == 1 and p == 1)
+    TN = sum(1 for a, p in zip(actual_label, predicted_label) if a == 0 and p == 0)
+
+    acc = (TP + TN)/len(actual_label)
+    accuracy.append(acc)
+    
+plt.plot(accuracy, marker = "o")
+plt.title("Lab 2 - Uppg. 3 & 4.")
+plt.xlabel("Number of simulations.")
+plt.ylabel("Accuracy")
+plt.grid(True, linestyle = ":", )
+plt.legend(loc="upper left")
+plt.show()
