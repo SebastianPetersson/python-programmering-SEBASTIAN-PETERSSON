@@ -52,28 +52,35 @@ def classify_pokemon(test_set, training_set, k=10):
 #Accuracy
 accuracy = []
 
+
 for i in range(n_simulations):
 
-    #Each simulation, shuffling, making new sets, and shuffling sets.
+    #Each simulation: shuffling, making new sets, and shuffling sets.
     rnd.shuffle(pichu)
     rnd.shuffle(pikachu)
     training_set = pichu [:50] + pikachu [:50]
     test_set = pichu [50:] + pikachu [50:]
     rnd.shuffle(training_set)
     rnd.shuffle(test_set)
-
+    #Runns the classifier each time.
     predictions = classify_pokemon(test_set, training_set, k)
-
+    
     TP = sum(1 for a, p in zip(actual_label, predicted_label) if a == 1 and p == 1)
     TN = sum(1 for a, p in zip(actual_label, predicted_label) if a == 0 and p == 0)
 
     acc = (TP + TN)/len(actual_label)
     accuracy.append(acc)
-    
-plt.plot(accuracy, marker = "o")
+
+mean_accuracies = np.mean(accuracy)
+print(f"The mean of the accuracy through 10 simulations is {mean_accuracies*100:.2f} %.")
+
+plt.plot(accuracy, marker = "o", linestyle = ':', color = "crimson", label = "Accuracies")
+plt.axhline(mean_accuracies, linestyle = ":", color = "navy", label= "Mean")
 plt.title("Lab 2 - Uppg. 3 & 4.")
 plt.xlabel("Number of simulations.")
 plt.ylabel("Accuracy")
+plt.xlim(0, n_simulations-1)
+plt.ylim(0.8, 1)
 plt.grid(True, linestyle = ":", )
-plt.legend(loc="upper left")
+plt.legend(loc="lower left")
 plt.show()
