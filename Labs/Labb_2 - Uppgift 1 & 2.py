@@ -11,11 +11,6 @@ with open(datapoints_path, "r") as tr_file:
     for line in tr_file:
         row = [float(value) for value in line.split(",")]
         training_data.append(row)
-#Categorizing after labels and unpacking x & y for plotting.
-pichu = [(w,h) for (w,h,label) in training_data if label == 0]
-pikachu = [(w,h) for (w,h,label) in training_data if label == 1]
-pichu_x, pichu_y = zip(*pichu)
-pikachu_x, pikachu_y = zip(*pikachu)
 
 def get_user_input(question):
     while True:
@@ -55,14 +50,13 @@ def euclidean_distance(p1, p2):
 
 def classify_pokemon(user_data, training_data, k=10):
     distances =[]
-
     for data_point in training_data:
         train_coordinates = data_point[:2]
         label = data_point[2]
         distance = euclidean_distance(user_data, train_coordinates)
         distances.append((distance, label))
 
-    distances.sort(key=lambda x: x[0])
+    distances.sort(key = lambda x: x[0])
     k_nearest = distances[:k]
     labels = [label for distance, label in k_nearest]
     prediction = max(set(labels), key=labels.count)
@@ -74,13 +68,17 @@ for point in user_data:
     pred = classify_pokemon(point, training_data, k)
     predictions.append(pred)
     
-
 for prediction in predictions:
     if prediction == 0:
         print(f"Din pokemon är en Pichu.")
     else:
         print(f"Din pokemon är en Pikachu.")
 
+#Categorizing after labels and unpacking x & y for plotting.
+pichu = [(w,h) for (w,h,label) in training_data if label == 0]
+pikachu = [(w,h) for (w,h,label) in training_data if label == 1]
+pichu_x, pichu_y = zip(*pichu)
+pikachu_x, pikachu_y = zip(*pikachu)
 colors = ["crimson" if p == 0 else "yellow" for p in predictions]
 plt.scatter(pichu_x, pichu_y, color = "crimson", edgecolor = "black", alpha = 0.7, label = "Pichu(0)")
 plt.scatter(pikachu_x, pikachu_y, color = "yellow", edgecolor = "black", alpha = 0.7, label = "Pikachu(1)")

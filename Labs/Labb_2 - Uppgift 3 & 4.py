@@ -49,10 +49,7 @@ def classify_pokemon(test_set, training_set, k=10):
         predicted_label.append(prediction)
     return predicted_label
 
-#Accuracy
 accuracy = []
-
-
 for i in range(n_simulations):
 
     #Each simulation: shuffling, making new sets, and shuffling sets.
