@@ -31,3 +31,10 @@ for antal_kast in tärnings_kast:
             sexor += 1
     sannolikhet = sexor/antal_kast
     print(f"Antal kast: {antal_kast}, Antal sexor: {sexor}, Sannolikhet för sexa {sannolikhet*100:.2f} %.")
+
+
+
+
+    lista = [1, 2, 3, 4, 5]
+
+    x,y = lista[0, 1]
