@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import random as rnd
-datapoints_path = r"C:\Users\Sebastian!\Documents\Programmering\python-programmering-SEBASTIAN-PETERSSON\Labs\datapoints.txt"
+datapoints_path = r"C:\Users\Sebastian!\Documents\Programmering\python-programmering-SEBASTIAN-PETERSSON\Labs\Labb_2\datapoints.txt"
 k = 10
 n_simulations = 10
 

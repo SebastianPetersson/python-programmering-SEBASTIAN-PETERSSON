@@ -1,8 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-datapoints_path = r"C:\Users\Sebastian!\Documents\Programmering\python-programmering-SEBASTIAN-PETERSSON\Labs\datapoints.txt"
-testpoints_path = r"C:\Users\Sebastian!\Documents\Programmering\python-programmering-SEBASTIAN-PETERSSON\Labs\testpoints.txt"
+datapoints_path = r"C:\Users\Sebastian!\Documents\Programmering\python-programmering-SEBASTIAN-PETERSSON\Labs\Labb_2\datapoints.txt"
+testpoints_path = r"C:\Users\Sebastian!\Documents\Programmering\python-programmering-SEBASTIAN-PETERSSON\Labs\Labb_2\testpoints.txt"
 
 """Cleaning and packing datapoints.txt into new list training_data."""
 training_data = []
@@ -20,6 +20,7 @@ with open(testpoints_path, "r") as te_file:
         row = [float(value.split(". ", 1)[-1].strip().strip("()")) for value in line.split(",")]
         test_data.append(row)
 
+"""Separating by labels."""
 pichu = [(w,h) for (w,h,label) in training_data if label == 0]
 pikachu = [(w,h) for (w,h,label) in training_data if label == 1]
 test_data_points = [(w,h) for (w,h) in test_data]
@@ -59,6 +60,7 @@ pichu_x, pichu_y = zip(*pichu)
 pikachu_x, pikachu_y = zip(*pikachu)
 test_x, test_y = zip(*test_data_points)
 
+"""Visuals."""
 colors = ["crimson" if pred == 0 else "yellow" for pred in predictions]
 plt.scatter(pichu_x, pichu_y, color = "crimson", edgecolor = "black", alpha = 0.7, label = "Pichu(0)")
 plt.scatter(pikachu_x, pikachu_y, color = "yellow", edgecolor = "black", alpha = 0.7, label = "Pikachu(1)")
