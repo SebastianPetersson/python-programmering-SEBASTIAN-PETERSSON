@@ -4,14 +4,14 @@ import random as rnd
 
 datapoints_path = r"C:\Users\Sebastian!\Documents\Programmering\python-programmering-SEBASTIAN-PETERSSON\Labs\Labb_2\datapoints.txt"
 
-"""Cleaning and packing datapoints.txt into clean_data."""
+#Cleaning and packing datapoints.txt into clean_data.
 clean_data = []
 with open(datapoints_path, "r") as tr_file:
     next(tr_file)
     for line in tr_file:
         row = [float(value) for value in line.split(",")]
         clean_data.append(row)
-"""Getting user input metrics and desired k value."""
+#Getting user input metrics and desired k value.
 def get_user_input(question):
     while True:
         try:
@@ -74,7 +74,7 @@ for prediction in predictions:
     else:
         print(f"Din pokemon är en Pikachu.")
 
-"""Categorizing after labels and unpacking x & y for plotting."""
+#Categorizing after labels and unpacking x & y for plotting.
 pichu = [(w,h) for (w,h,label) in clean_data if label == 0]
 pikachu = [(w,h) for (w,h,label) in clean_data if label == 1]
 pichu_x, pichu_y = zip(*pichu)
