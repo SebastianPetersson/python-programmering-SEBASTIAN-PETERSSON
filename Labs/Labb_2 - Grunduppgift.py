@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 datapoints_path = r"C:\Users\Sebastian!\Documents\Programmering\python-programmering-SEBASTIAN-PETERSSON\Labs\datapoints.txt"
 testpoints_path = r"C:\Users\Sebastian!\Documents\Programmering\python-programmering-SEBASTIAN-PETERSSON\Labs\testpoints.txt"
 
-#Cleaning and packing datapoints.txt into new list training_data.
+"""Cleaning and packing datapoints.txt into new list training_data."""
 training_data = []
 with open(datapoints_path, "r") as tr_file:
     next(tr_file)
@@ -12,7 +12,7 @@ with open(datapoints_path, "r") as tr_file:
         row = [float(value) for value in line.split(",")]
         training_data.append(row)
 
-#Cleaning of test data, and packing them into the list test_data.
+"""Cleaning of test data, and packing them into the list test_data."""
 test_data = []
 with open(testpoints_path, "r") as te_file:
     next(te_file)
@@ -29,7 +29,7 @@ def euclidean_distance(p1, p2):
     dy = p1[1] - p2[1]
     return np.sqrt(dx**2 + dy**2)
 
-#Classify the 1 nearest neighbor
+"""Classify the 1 nearest neighbor"""
 def classify_test(test_point, training_data):
     distances =[]
 
@@ -54,7 +54,7 @@ for i, prediction in enumerate(predictions, start = 1):
     else:
         print(f"Testdata {i} är närmast en Pikachu.")
 
-#Unzipping coordinates for Plotting.
+"""Unzipping coordinates for Plotting."""
 pichu_x, pichu_y = zip(*pichu)
 pikachu_x, pikachu_y = zip(*pikachu)
 test_x, test_y = zip(*test_data_points)

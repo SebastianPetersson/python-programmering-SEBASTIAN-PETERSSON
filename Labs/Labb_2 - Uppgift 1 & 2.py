@@ -4,14 +4,14 @@ import random as rnd
 
 datapoints_path = r"C:\Users\Sebastian!\Documents\Programmering\python-programmering-SEBASTIAN-PETERSSON\Labs\datapoints.txt"
 
-#Cleaning and packing datapoints.txt into training_data.
-training_data = []
+"""Cleaning and packing datapoints.txt into clean_data."""
+clean_data = []
 with open(datapoints_path, "r") as tr_file:
     next(tr_file)
     for line in tr_file:
         row = [float(value) for value in line.split(",")]
-        training_data.append(row)
-
+        clean_data.append(row)
+"""Getting user input metrics and desired k value."""
 def get_user_input(question):
     while True:
         try:
@@ -65,7 +65,7 @@ def classify_pokemon(user_data, training_data, k=10):
 predictions = []
 
 for point in user_data:
-    pred = classify_pokemon(point, training_data, k)
+    pred = classify_pokemon(point, clean_data, k)
     predictions.append(pred)
     
 for prediction in predictions:
@@ -74,15 +74,16 @@ for prediction in predictions:
     else:
         print(f"Din pokemon är en Pikachu.")
 
-#Categorizing after labels and unpacking x & y for plotting.
-pichu = [(w,h) for (w,h,label) in training_data if label == 0]
-pikachu = [(w,h) for (w,h,label) in training_data if label == 1]
+"""Categorizing after labels and unpacking x & y for plotting."""
+pichu = [(w,h) for (w,h,label) in clean_data if label == 0]
+pikachu = [(w,h) for (w,h,label) in clean_data if label == 1]
 pichu_x, pichu_y = zip(*pichu)
 pikachu_x, pikachu_y = zip(*pikachu)
+
 colors = ["crimson" if p == 0 else "yellow" for p in predictions]
 plt.scatter(pichu_x, pichu_y, color = "crimson", edgecolor = "black", alpha = 0.7, label = "Pichu(0)")
 plt.scatter(pikachu_x, pikachu_y, color = "yellow", edgecolor = "black", alpha = 0.7, label = "Pikachu(1)")
-plt.scatter(user_x, user_y, color = colors, edgecolor = "black", alpha = 0.8, s = 90, label = "Your pokemon", marker = "*")
+plt.scatter(user_x, user_y, color = colors[0], edgecolor = "black", alpha = 0.8, s = 90, label = "Your pokemon", marker = "*")
 plt.title("Lab 2 - Pichu or Pikachu")
 plt.xlabel("Width(cm)")
 plt.ylabel("Height(cm)")
