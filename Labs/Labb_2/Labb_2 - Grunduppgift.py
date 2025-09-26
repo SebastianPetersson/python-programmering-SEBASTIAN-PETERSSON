@@ -40,7 +40,7 @@ def classify_test(test_point, training_data):
         distance = euclidean_distance(test_point, train_coordinates)
         distances.append((distance, label))
 
-    _, nearest_label = min(distances, key=lambda x: x[0]) #Närmaste punkt (_ är en s.k. slaskvariabel, innehåler det faktiska avståndet men det använder jag inte, vill endast ha label.)
+    _, nearest_label = min(distances, key=lambda x: x[0])
     return nearest_label
 
 predictions = []
