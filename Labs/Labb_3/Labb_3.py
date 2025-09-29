@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import random as rnd
 
 data_path = r"C:\Users\Sebastian!\Documents\Programmering\python-programmering-SEBASTIAN-PETERSSON\Labs\Labb_3\unlabelled_data.csv"
 clean_data = []
@@ -30,15 +29,11 @@ above_list, below_list = separate_datapoints(clean_data)
 
 labelled_list = (above_list + below_list)
 with open("Labelled_data.csv", "w") as labelled_data:
-    # labelled_data.write("x, y, label\n")
     for x, y, label in labelled_list:
         labelled_data.write(f"{x}, {y}, {label}\n")
 
-ax = [data[0] for data in above_list]
-ay = [data[1] for data in above_list]
-bx = [data[0] for data in below_list]
-by = [data[1] for data in below_list]
-
+ax, ay, _ = zip(*above_list)
+bx, by, _ = zip(*below_list)
 
 plt.scatter(ax, ay, color = "navy", s = 10, label = "datapoints above line.")
 plt.scatter(bx, by, color = "crimson", s = 10, label = "datapoints below line")
