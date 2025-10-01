@@ -14,6 +14,5 @@ def label_datapoints(k, m, xCoord, yCoord):
         label = 0
     return label
 
-
 raw_datapoints = pd.read_csv(rf"{data_path}\unlabelled_data.csv", header = None)
 raw_datapoints[2] = raw_datapoints.apply(lambda line: label_datapoints(k, m, line[0], line[1]))
