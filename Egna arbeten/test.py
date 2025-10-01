@@ -1,6 +1,0 @@
-print("tjena")
-print("hejsan")
-print("hallå")          
-print("uppdatering")
-print("en till rad")
-int("test")

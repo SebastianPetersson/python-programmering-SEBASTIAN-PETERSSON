@@ -1,7 +1,3 @@
-# name = input("Skriv in ditt namn: ")
-# kön = input("Skriv in ditt kön (man/kvinna): ")
-
-# print(f"God morgon herr {name}") if kön == "man" else print(f"God morgon fru {name}")
 
 name = input("Skriv in ditt namn: ")
 

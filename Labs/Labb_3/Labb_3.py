@@ -13,12 +13,10 @@ def separate_datapoints(clean_data):
     
     above_list = []
     below_list = []
-    m=0
-    k=-1
 
     for x, y in clean_data:
         
-        split_line = k * x + m
+        split_line =  -x
         if y > split_line:
             above_list.append((x, y, 1))
         else: 
@@ -44,4 +42,3 @@ plt.ylabel("y")
 plt.legend()
 plt.title("Labelled data.")
 plt.show()
-
