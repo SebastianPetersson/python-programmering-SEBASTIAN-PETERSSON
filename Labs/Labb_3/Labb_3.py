@@ -1,20 +1,21 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import csv
 data_path = r"C:\Users\Sebastian!\Documents\Programmering\python-programmering-SEBASTIAN-PETERSSON\Labs\Labb_3\unlabelled_data.csv"
 clean_data = []
 k = -1
 m = 0
 
 with open(data_path, "r") as unlabelled_data:
-    for line in unlabelled_data:
-        data = [float(value) for value in line.split(",")]
-        clean_data.append(data)
+    reader = csv.reader(unlabelled_data)
+    for row in reader:
+        x, y = float(row[0]), float(row[1])
+        clean_data.append((x,y))
 
-def separate_datapoints(clean_data, k, m):
-    
+def classify_datapoints(clean_data, k, m):
+
     above_list = []
     below_list = []
-
     for x, y in clean_data:
         
         my_split_line = k*x+m
@@ -24,7 +25,7 @@ def separate_datapoints(clean_data, k, m):
             below_list.append((x, y, 0))
     return above_list, below_list
 
-above_list, below_list = separate_datapoints(clean_data, k, m)
+above_list, below_list = classify_datapoints(clean_data, k, m)
 
 labelled_list = (above_list + below_list)
 with open("Labelled_data.csv", "w") as labelled_data:
