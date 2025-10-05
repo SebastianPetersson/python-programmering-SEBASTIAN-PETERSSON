@@ -1,50 +1,41 @@
 import matplotlib.pyplot as plt
-import numpy as np
-import csv
-data_path = r"C:\Users\Sebastian!\Documents\Programmering\python-programmering-SEBASTIAN-PETERSSON\Labs\Labb_3\unlabelled_data.csv"
-clean_data = []
+import pandas as pd
+data_path = rf"C:\Users\Sebastian!\Documents\Programmering\python-programmering-SEBASTIAN-PETERSSON\Labs\Labb_3"
+write_path = rf"{data_path}\Labelled_data.csv"
 k = -1
 m = 0
 
-with open(data_path, "r") as unlabelled_data:
-    reader = csv.reader(unlabelled_data)
-    for row in reader:
-        x, y = float(row[0]), float(row[1])
-        clean_data.append((x,y))
+def label_datapoints(k, m, x, y):
+    
+    if y > k*x + m:
+        label = 1
+    else:
+        label = 0
+    return label
 
-def classify_datapoints(clean_data, k, m):
+datapoints = pd.read_csv(rf"{data_path}\unlabelled_data.csv", header = None, names = ['x', 'y'])
+datapoints['label'] = datapoints.apply(lambda point: label_datapoints(k, m, point['x'], point['y']), axis = 1)
 
-    above_list = []
-    below_list = []
-    for x, y in clean_data:
-        
-        my_split_line = k*x+m
-        if y > my_split_line:
-            above_list.append((x, y, 1))
-        else: 
-            below_list.append((x, y, 0))
-    return above_list, below_list
+with open(rf"{write_path}", 'w', newline='') as labelledData:
+    datapoints.to_csv(labelledData, index = False)
 
-above_list, below_list = classify_datapoints(clean_data, k, m)
+print("Classified datapoints has been written to 'Labelled_file.csv'")
+count = datapoints['label'].value_counts()
+print(count.to_string)
 
-labelled_list = (above_list + below_list)
-with open("Labelled_data.csv", "w") as labelled_data:
-    for x, y, label in labelled_list:
-        labelled_data.write(f"{x}, {y}, {label}\n")
+#Plotting
+x_min, x_max = datapoints['x'].min(), datapoints['x'].max()
+x_values = [x_min, x_max]
+y_values = [k*x + m for x in x_values]
+above = datapoints[datapoints['label'] == 1]
+below = datapoints[datapoints['label'] == 0]
 
-#For plotting
-ax, ay, _ = zip(*above_list)
-bx, by, _ = zip(*below_list)
-all_x = list(ax) + list(bx)
-x_line = np.linspace(min(all_x), max(all_x))
-y_line = k * x_line + m
-
-plt.scatter(ax, ay, color = "navy", s = 10, label = "datapoints above line.")
-plt.scatter(bx, by, color = "crimson", s = 10, label = "datapoints below line")
-plt.plot(x_line, y_line, color = "gold", label = "My splitting line")
-plt.grid(True, linestyle = ":")
-plt.xlabel("x")
-plt.ylabel("y")
-plt.legend()
-plt.title("Labelled data.")
+plt.scatter(above['x'], above['y'], color = 'crimson', s = 10)
+plt.scatter(below['x'], below['y'], color = 'navy', s = 10)
+plt.plot((x_values),(y_values), color = 'gold', label = 'My splitting line')
+plt.xlabel('X')
+plt.ylabel('Y')
+plt.title("Linjär klassificering")
+plt.grid(True, linestyle = ':')
+plt.legend(loc = "upper left")
 plt.show()
