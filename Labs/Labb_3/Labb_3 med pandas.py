@@ -14,14 +14,14 @@ def label_datapoints(k, m, x, y):
     return label
 
 datapoints = pd.read_csv(rf"{data_path}\unlabelled_data.csv", header = None, names = ['x', 'y'])
-datapoints['label'] = datapoints.apply(lambda line: label_datapoints(k, m, line['x'], line['y']), axis = 1) #Kolla upp vektorisering, bättre för större dataset.
+datapoints['label'] = datapoints.apply(lambda point: label_datapoints(k, m, point['x'], point['y']), axis = 1)
 
 with open(rf"{write_path}", 'w', newline='') as labelledData:
     datapoints.to_csv(labelledData, index = False)
 
 print("Classified datapoints has been written to 'Labelled_file.csv'")
 count = datapoints['label'].value_counts()
-print(count)
+print(count.to_string)
 
 #Plotting
 x_min, x_max = datapoints['x'].min(), datapoints['x'].max()
