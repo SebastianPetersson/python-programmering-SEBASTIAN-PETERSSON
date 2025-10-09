@@ -3,6 +3,7 @@
 print("Uppgift 1a)\n")
 
 import math 
+import matplotlib.pyplot as plt
 
 a = 3
 b = 4
